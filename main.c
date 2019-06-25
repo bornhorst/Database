@@ -25,13 +25,30 @@ while(true) {
 	// grab input
 	ReadInput(InBuffer);
 
-	// follow command with action
-	if(strcmp(InBuffer -> Buffer, ".exit") == 0) {
-		CloseInputBuffer(InBuffer);
-		exit(EXIT_SUCCESS);
-	} else {
-		printf("Not a valid command '%s'.\n", InBuffer -> Buffer);
+	// check for valid command
+	if(InBuffer -> Buffer[0] == '.') {
+		switch(RunCommand(InBuffer)) {
+			case(COMMAND_SUCCESS):
+				continue;
+			case(COMMAND_FAILURE):
+				printf("Command Not Valid '%s'\n", InBuffer -> Buffer);
+				continue;
+		}
 	}
+
+	// check for valid statement
+	Statement statement;
+	switch(PrepareStatement(InBuffer, &statement)) {
+		case(PREPARE_SUCCESS):
+			break;
+		case(PREPARE_FAILURE):
+			printf("Keyword Not Valid for '%s'\n", InBuffer -> Buffer);
+			continue;
+	}
+
+	// execute the statement
+	ExecuteStatement(&statement);
+	printf("Statement Executed\n");
 }
 
 }

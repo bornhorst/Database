@@ -8,7 +8,27 @@ Relational Database
 #include <stdlib.h>
 #include <string.h>
 
+/* enumerations */
+typedef enum {
+COMMAND_SUCCESS,
+COMMAND_FAILURE
+} CommandResult;
+
+typedef enum {
+PREPARE_SUCCESS,
+PREPARE_FAILURE
+} PrepareResult;
+
+typedef enum {
+INSERT,
+SELECT
+} StatementType;
+
 /* structs */
+typedef struct {
+StatementType type;
+} Statement;
+
 typedef struct {
 char* Buffer;
 size_t BufferLength;
@@ -22,4 +42,6 @@ InputBuffer* NewInputBuffer(void);
 void CommandPrompt(void);
 void ReadInput(InputBuffer* InBuffer);
 void CloseInputBuffer(InputBuffer* InBuffer);
-
+CommandResult RunCommand(InputBuffer* InBuffer);
+PrepareResult PrepareStatement(InputBuffer* InBuffer, Statement* statement);
+void ExecuteStatement(Statement* statement);
