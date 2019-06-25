@@ -77,9 +77,10 @@ Parameters: InputBuffer*
 CommandResult RunCommand(InputBuffer* InBuffer) {
 
 // check for valid command
-if(strcmp(InBuffer -> Buffer, ".exit") == 0)
+if(strcmp(InBuffer -> Buffer, ".exit") == 0) {
+	CloseInputBuffer(InBuffer);
 	exit(EXIT_SUCCESS);
-else 
+} else 
 	return COMMAND_FAILURE;
 
 }
