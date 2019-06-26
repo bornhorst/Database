@@ -32,25 +32,25 @@ SELECT
 typedef struct {
 char UserName[USERNAME_SIZE];
 char PassWord[PASSWORD_SIZE];
-} DataRow;
+} DataRow_s;
 
 typedef struct {
 StatementType type;
-} Statement;
+} Statement_s;
 
 typedef struct {
 char* Buffer;
 size_t BufferLength;
 ssize_t InputLength;
-} InputBuffer;
+} InputBuffer_s;
 
 /* global variables */
 
 /* function declarations */
-InputBuffer* NewInputBuffer(void);
+InputBuffer_s* NewInputBuffer(void);
 void CommandPrompt(void);
-void ReadInput(InputBuffer* InBuffer);
-void CloseInputBuffer(InputBuffer* InBuffer);
-CommandResult RunCommand(InputBuffer* InBuffer);
-PrepareResult PrepareStatement(InputBuffer* InBuffer, Statement* statement);
-void ExecuteStatement(Statement* statement);
+void ReadInput(InputBuffer_s* InBuffer);
+void CloseInputBuffer(InputBuffer_s* InBuffer);
+CommandResult RunCommand(InputBuffer_s* InBuffer);
+PrepareResult PrepareStatement(InputBuffer_s* InBuffer, Statement_s* statement);
+void ExecuteStatement(Statement_s* statement);
