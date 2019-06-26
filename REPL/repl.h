@@ -8,6 +8,10 @@ Relational Database
 #include <stdlib.h>
 #include <string.h>
 
+/* defines */
+#define USERNAME_SIZE 32
+#define PASSWORD_SIZE 32
+
 /* enumerations */
 typedef enum {
 COMMAND_SUCCESS,
@@ -25,6 +29,11 @@ SELECT
 } StatementType;
 
 /* structs */
+typedef struct {
+char UserName[USERNAME_SIZE];
+char PassWord[PASSWORD_SIZE];
+} DataRow;
+
 typedef struct {
 StatementType type;
 } Statement;
