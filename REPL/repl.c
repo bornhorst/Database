@@ -95,6 +95,12 @@ PrepareResult PrepareStatement(InputBuffer_s* InBuffer, Statement_s* statement) 
 	// insert, only want to capture 'INSERT' here 
 	if(strncmp(InBuffer -> Buffer, "insert", 6) == 0) {
 		statement -> type = INSERT;
+		int Args = sscanf(InBuffer -> Buffer, "insert %s %s",
+			         (statement -> RowInsert.UserName, 
+				  statement -> RowInsert.PassWord));
+		if(Args < 3)
+			return PREPARE_FAILURE;
+
 		return PREPARE_SUCCESS;
 	}
 

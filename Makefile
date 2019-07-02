@@ -3,5 +3,11 @@ VPATH	= REPL/
 
 default: all
 
-all: main.c REPL/repl.c
+compile: main.c REPL/repl.c
 	gcc -o db main.c REPL/repl.c -w
+
+run: 
+	./db
+
+clean:
+	rm db

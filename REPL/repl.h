@@ -36,6 +36,7 @@ char PassWord[PASSWORD_SIZE];
 
 typedef struct {
 StatementType type;
+DataRow_s RowInsert;
 } Statement_s;
 
 typedef struct {
